@@ -4,36 +4,44 @@ import {
   PrimaryColumn,
   BeforeInsert,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 import { Type } from "class-transformer";
+import { Tag } from "./Tag";
 
-@Entity("users")
-export class User extends BaseEntity {
+@Entity("Posts")
+export class Post extends BaseEntity {
   @PrimaryColumn("uuid")
   id: string;
 
+  @Column("varchar", { length: 1000 })
+  title: string;
+
   @Column("varchar", { length: 255 })
-  email: string;
+  wirte: string;
 
   @Column("text")
-  password: string;
+  content: string;
 
-  @Column("varchar", { length: 30, nullable: true })
-  name?: string;
+  @Column()
+  type: number;
 
   @Column({ nullable: true })
-  age: number;
+  imgUrl?: string;
 
   @Column()
   authLevel: number;
 
-  @Column("varchar", { length: 1000, nullable: true })
-  introduce?: string;
+  @Column({ type: "char", length: 2, default: "Y" })
+  useYn!: string;
 
-  @Column({ nullable: true })
-  imgUrl?: string;
+  // Post(1) <-> Tags(*)
+  @OneToMany((type) => Tag, (Tag) => Tag.Post)
+  Tags?: Tag[];
 
   @Column({
     type: "int",
@@ -73,7 +81,6 @@ export class User extends BaseEntity {
   updateDateUpdate() {
     this.updatedAt = new Date();
   }
-
   @BeforeInsert()
   addId() {
     this.id = uuidv4();

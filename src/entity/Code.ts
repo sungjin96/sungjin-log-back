@@ -1,39 +1,26 @@
 import {
   Entity,
   Column,
-  PrimaryColumn,
   BeforeInsert,
   BaseEntity,
   BeforeUpdate,
+  PrimaryGeneratedColumn,
 } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
 import { Type } from "class-transformer";
 
-@Entity("users")
-export class User extends BaseEntity {
-  @PrimaryColumn("uuid")
-  id: string;
+@Entity("Codes")
+export class Code extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column("varchar", { length: 255 })
-  email: string;
+  @Column({ type: "varchar", length: 200 })
+  RefName!: string;
 
-  @Column("text")
-  password: string;
+  @Column("varchar", { length: 500 })
+  desc: string;
 
-  @Column("varchar", { length: 30, nullable: true })
-  name?: string;
-
-  @Column({ nullable: true })
-  age: number;
-
-  @Column()
-  authLevel: number;
-
-  @Column("varchar", { length: 1000, nullable: true })
-  introduce?: string;
-
-  @Column({ nullable: true })
-  imgUrl?: string;
+  @Column({ type: "char", length: 2, default: "Y" })
+  useYn!: string;
 
   @Column({
     type: "int",
@@ -72,10 +59,5 @@ export class User extends BaseEntity {
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = new Date();
-  }
-
-  @BeforeInsert()
-  addId() {
-    this.id = uuidv4();
   }
 }

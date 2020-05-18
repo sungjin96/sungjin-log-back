@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import { mergeTypes, mergeResolvers } from "merge-graphql-schemas";
 import * as path from "path";
 import * as fs from "fs";
