@@ -26,8 +26,8 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   age: number;
 
-  @Column()
-  authLevel: number;
+  @Column({type: "char", length: 1, default: "U"})
+  authLevel: string;
 
   @Column("varchar", { length: 1000, nullable: true })
   introduce?: string;

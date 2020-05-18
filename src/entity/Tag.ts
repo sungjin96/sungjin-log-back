@@ -11,23 +11,23 @@ import { v4 as uuidv4 } from "uuid";
 import { Type } from "class-transformer";
 import { Post } from "./Post";
 
-@Entity("Tags")
+@Entity("tags")
 export class Tag extends BaseEntity {
   @PrimaryColumn("uuid")
   id: string;
 
   // Post(1) <-> Tags(*)
-  @ManyToOne((type) => Post, (Post) => Post.Tags, {
+  @ManyToOne(() => Post, (Post) => Post.tags, {
     nullable: true,
     onDelete: "CASCADE",
   })
-  Post?: Post;
+  post: Post;
 
   @Column("varchar", { length: 50, nullable: true })
-  tag?: string;
+  content?: string;
 
-  @Column()
-  authLevel: number;
+  @Column({type: "char", length: 1, default: "U"})
+  authLevel: string;
 
   @Column({ type: "char", length: 2, default: "Y" })
   useYn!: string;

@@ -8,13 +8,13 @@ import {
 } from "typeorm";
 import { Type } from "class-transformer";
 
-@Entity("Codes")
+@Entity("codes")
 export class Code extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: "varchar", length: 200 })
-  RefName!: string;
+  refName!: string;
 
   @Column("varchar", { length: 500 })
   desc: string;

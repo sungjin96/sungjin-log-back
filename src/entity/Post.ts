@@ -4,8 +4,6 @@ import {
   PrimaryColumn,
   BeforeInsert,
   BaseEntity,
-  CreateDateColumn,
-  UpdateDateColumn,
   BeforeUpdate,
   OneToMany,
 } from "typeorm";
@@ -13,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Type } from "class-transformer";
 import { Tag } from "./Tag";
 
-@Entity("Posts")
+@Entity("posts")
 export class Post extends BaseEntity {
   @PrimaryColumn("uuid")
   id: string;
@@ -22,26 +20,26 @@ export class Post extends BaseEntity {
   title: string;
 
   @Column("varchar", { length: 255 })
-  wirte: string;
+  write: string;
 
   @Column("text")
   content: string;
 
   @Column()
-  type: number;
+  type: string;
 
   @Column({ nullable: true })
   imgUrl?: string;
-
-  @Column()
-  authLevel: number;
+  
+  @Column({ type: "char", length: 1, default: "U" })
+  authLevel: string;
 
   @Column({ type: "char", length: 2, default: "Y" })
   useYn!: string;
 
   // Post(1) <-> Tags(*)
-  @OneToMany((type) => Tag, (Tag) => Tag.Post)
-  Tags?: Tag[];
+  @OneToMany(() => Tag, (Tag) => Tag.post)
+  tags?: Tag[];
 
   @Column({
     type: "int",
