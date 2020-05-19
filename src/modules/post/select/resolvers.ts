@@ -11,11 +11,13 @@ export const resolvers: ResolverMap = {
 
       const posts = await Post.find({
         where: `
-          ${type ? "type='" + type + "'" : ""}`,
+          ${type ? "type='" + type + "'" : ""}
+          ${tag ? "and Post_tags.content='" + tag + "'" : ""}`,
       });
 
       return posts;
     },
+
     selectPost: async (_,{id}:GQL.ISelectPostOnQueryArguments) => {
       const post = await Post.findOne({ where: {id} });
 
