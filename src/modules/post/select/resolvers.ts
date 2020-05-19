@@ -9,12 +9,17 @@ export const resolvers: ResolverMap = {
     ) => {
       console.log(tag);
 
-      const post = await Post.find({
+      const posts = await Post.find({
         where: `
           ${type ? "type='" + type + "'" : ""}`,
       });
 
-      return post;
+      return posts;
     },
+    selectPost: async (_,{id}:GQL.ISelectPostOnQueryArguments) => {
+      const post = await Post.findOne({ where: {id} });
+
+      return post
+    }
   },
 };

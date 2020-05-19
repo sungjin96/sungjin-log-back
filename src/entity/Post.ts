@@ -1,18 +1,17 @@
 import {
   Entity,
   Column,
-  PrimaryColumn,
   BeforeInsert,
   BaseEntity,
   BeforeUpdate,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
 import { Tag } from "./Tag";
 
 @Entity("posts")
 export class Post extends BaseEntity {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column("varchar", { length: 1000 })
@@ -62,9 +61,5 @@ export class Post extends BaseEntity {
   @BeforeUpdate()
   updateDateUpdate() {
     this.updatedAt = new Date();
-  }
-  @BeforeInsert()
-  addId() {
-    this.id = uuidv4();
   }
 }
