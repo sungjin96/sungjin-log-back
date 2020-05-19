@@ -8,7 +8,6 @@ import {
   OneToMany,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
-import { Type } from "class-transformer";
 import { Tag } from "./Tag";
 
 @Entity("posts")
@@ -30,7 +29,7 @@ export class Post extends BaseEntity {
 
   @Column({ nullable: true })
   imgUrl?: string;
-  
+
   @Column({ type: "char", length: 1, default: "U" })
   authLevel: string;
 
@@ -38,36 +37,21 @@ export class Post extends BaseEntity {
   useYn!: string;
 
   // Post(1) <-> Tags(*)
-  @OneToMany(() => Tag, (Tag) => Tag.post)
+  @OneToMany(() => Tag, (Tag) => Tag.post, { cascade: true, eager: true })
   tags?: Tag[];
 
   @Column({
-    type: "int",
-    width: 11,
+    type: "date",
     nullable: false,
     readonly: true,
-    default: () => "0",
-    transformer: {
-      to: (value?: Date) =>
-        !value ? value : Math.round(value.getTime() / 1000),
-      from: (value?: number) => (!value ? value : new Date(value * 1000)),
-    },
   })
-  @Type(() => Date)
   createdAt: Date;
 
   @Column({
-    type: "int",
-    width: 11,
+    type: "date",
     nullable: true,
     default: () => null,
-    transformer: {
-      to: (value?: Date) =>
-        !value ? value : Math.round(value.getTime() / 1000),
-      from: (value?: number) => (!value ? value : new Date(value * 1000)),
-    },
   })
-  @Type(() => Date)
   updatedAt?: Date;
 
   @BeforeInsert()

@@ -8,7 +8,6 @@ import {
   ManyToOne,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
-import { Type } from "class-transformer";
 import { Post } from "./Post";
 
 @Entity("tags")
@@ -26,39 +25,25 @@ export class Tag extends BaseEntity {
   @Column("varchar", { length: 50, nullable: true })
   content?: string;
 
-  @Column({type: "char", length: 1, default: "U"})
+  @Column({ type: "char", length: 1, default: "U" })
   authLevel: string;
 
   @Column({ type: "char", length: 2, default: "Y" })
   useYn!: string;
 
+
   @Column({
-    type: "int",
-    width: 11,
+    type: "date",
     nullable: false,
     readonly: true,
-    default: () => "0",
-    transformer: {
-      to: (value?: Date) =>
-        !value ? value : Math.round(value.getTime() / 1000),
-      from: (value?: number) => (!value ? value : new Date(value * 1000)),
-    },
   })
-  @Type(() => Date)
   createdAt: Date;
 
   @Column({
-    type: "int",
-    width: 11,
+    type: "date",
     nullable: true,
     default: () => null,
-    transformer: {
-      to: (value?: Date) =>
-        !value ? value : Math.round(value.getTime() / 1000),
-      from: (value?: number) => (!value ? value : new Date(value * 1000)),
-    },
   })
-  @Type(() => Date)
   updatedAt?: Date;
 
   @BeforeInsert()
