@@ -2,7 +2,6 @@ import * as bcrypt from "bcryptjs";
 
 import { ResolverMap } from '../../../types/graphql-utils';
 import { User } from '../../../entity/User';
-import { GQL } from "../../../types/schema";
 
 export const resolvers: ResolverMap = {
   Mutation: {

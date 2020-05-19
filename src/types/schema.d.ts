@@ -1,4 +1,3 @@
-import { Tag } from '../entity/Tag';
 // tslint:disable
 // graphql typescript definitions
 
@@ -44,7 +43,7 @@ declare namespace GQL {
     write: string;
     type: string;
     imgUrl?: string;
-    tags?: Array<Tag>;
+    tags?: Array<IInputTag>;
   }
 
   interface IRegisterOnMutationArguments {
@@ -56,34 +55,49 @@ declare namespace GQL {
     imgUrl?: string;
   }
 
+  interface IQuery {
+    __typename: "Query";
+    selectPostList: Array<IPost>;
+    hello: string;
+  }
+
+  interface ISelectPostListOnQueryArguments {
+    tag?: string;
+    type?: string;
+  }
+
+  interface IHelloOnQueryArguments {
+    name?: string;
+  }
+
   interface IPost {
     __typename: "Post";
     id: string;
     title: string;
     content: string;
+    write: string;
     type: string;
     imgUrl: string;
     authLevel: string;
     useYn: string;
-    tags: Array<ITag>;
+    tags?: Array<ITag>;
+    createdAt: string;
+    updatedAt: string;
   }
 
   interface ITag {
     __typename: "Tag";
     id: string;
     post: IPost;
-    authLevel: string;
     content: string;
+    authLevel: string;
     useYn: string;
+    createAt: string;
+    updateAt: string;
   }
 
-  interface IQuery {
-    __typename: "Query";
-    hello: string;
-  }
-
-  interface IHelloOnQueryArguments {
-    name?: string;
+  interface IInputTag {
+    content: string;
   }
 }
 
