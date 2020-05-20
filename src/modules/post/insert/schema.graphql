@@ -1,3 +1,3 @@
 type Mutation {
-  insertPost(title:String!, content: String!, write: String!, type: String!, imgUrl: String, tags: [InputTag]):Boolean
+  insertPost(title:String!, content: String!, write: String!, type: String!, imgUrl: String, url: String tags: [InputTag]):Boolean
 }

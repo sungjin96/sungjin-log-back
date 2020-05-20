@@ -29,6 +29,9 @@ export class Post extends BaseEntity {
   @Column({ nullable: true })
   imgUrl?: string;
 
+  @Column({ nullable: true })
+  url?: string;
+
   @Column({ type: "char", length: 1, default: "U" })
   authLevel: string;
 

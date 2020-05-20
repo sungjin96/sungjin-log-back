@@ -5,6 +5,7 @@ type Post {
   write: String!
   type: String
   imgUrl: String
+  url: String
   authLevel: String!
   useYn: String!
   tags: [Tag]
@@ -12,12 +13,13 @@ type Post {
   updatedAt: String
 }
 
-type Tag {
-  id: ID!
-  post: Post
+input InputPost {
+  title: String!
   content: String!
-  authLevel: String!
-  useYn: String!
-  createAt: String!
-  updateAt: String
+  write: String!
+  type: String
+  imgUrl: String
+  url: String
+  tags: [InputTag]
 }
+

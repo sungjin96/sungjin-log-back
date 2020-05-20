@@ -1,0 +1,13 @@
+input InputTag {
+  content: String!
+}
+
+type Tag {
+  id: ID!
+  post: Post
+  content: String!
+  authLevel: String!
+  useYn: String!
+  createAt: String!
+  updateAt: String
+}
