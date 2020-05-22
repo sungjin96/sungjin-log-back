@@ -6,6 +6,7 @@ type Tag {
   id: ID!
   post: Post
   content: String!
+  count: String
   authLevel: String!
   useYn: String!
   createAt: String!

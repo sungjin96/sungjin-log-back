@@ -13,15 +13,16 @@ export const resolvers: ResolverMap = {
         where: `
           ${type ? "type='" + type + "'" : ""}
           ${tag ? "and Post_tags.content='" + tag + "'" : ""}`,
+        order: { id: "DESC" },
       });
 
       return posts;
     },
 
-    selectPost: async (_,{id}:GQL.ISelectPostOnQueryArguments) => {
-      const post = await Post.findOne({ where: {id} });
+    selectPost: async (_, { id }: GQL.ISelectPostOnQueryArguments) => {
+      const post = await Post.findOne({ where: { id } });
 
-      return post
-    }
+      return post;
+    },
   },
 };

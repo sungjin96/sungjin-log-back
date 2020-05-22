@@ -60,6 +60,7 @@ declare namespace GQL {
     __typename: "Query";
     selectPostList: Array<IPost>;
     selectPost: IPost;
+    selectTagList: Array<ITag>;
     hello: string;
   }
 
@@ -92,29 +93,30 @@ declare namespace GQL {
     updatedAt: string;
   }
 
-  interface ITag {
-    __typename: "Tag";
-    id: string;
-    post: IInputPost;
+  interface IInputPost {
+    title: string;
     content: string;
-    authLevel: string;
-    useYn: string;
-    createAt: string;
-    updateAt: string;
+    write: string;
+    type?: string;
+    imgUrl?: string;
+    url?: string;
+    tags?: Array<IInputTag>;
   }
 
   interface IInputTag {
     content: string;
   }
 
-  interface IInputPost {
-    title: string;
+  interface ITag {
+    __typename: "Tag";
+    id: string;
+    post: IPost;
     content: string;
-    write: string;
-    type: string;
-    imgUrl: string;
-    url: string;
-    tags: Array<IInputTag>;
+    count: string;
+    authLevel: string;
+    useYn: string;
+    createAt: string;
+    updateAt: string;
   }
 }
 
