@@ -18,7 +18,6 @@ export const resolvers: ResolverMap = {
           group by content
           
       `);
-      console.log(tags);
 
       return tags;
     },
