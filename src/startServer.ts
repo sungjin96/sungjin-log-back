@@ -6,7 +6,7 @@ import { genSchema } from "./utils/genSchema";
 export const startServer = async () => {
   const server = new GraphQLServer({ schema: genSchema() as any });
   await createTypeormConn();
-  server.express.use((req, res, next) => {
+  server.express.use((_req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
       'Access-Control-Allow-Headers',
