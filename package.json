@@ -5,9 +5,9 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/glob": "^7.1.1",
-    "@types/jest": "^25.2.2",
-    "@types/node": "^14.0.1",
-    "@types/uuid": "^7.0.3",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.5",
+    "@types/uuid": "^8.0.0",
     "gql2ts": "^1.10.1",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
@@ -15,7 +15,7 @@
     "ts-node": "8.10.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "3.9.2"
+    "typescript": "3.9.3"
   },
   "dependencies": {
     "@gql2ts/from-schema": "^2.0.0-4",
@@ -25,16 +25,17 @@
     "graphql": "^15.0.0",
     "graphql-import": "^1.0.2",
     "graphql-request": "^1.8.2",
-    "graphql-tools": "^5.0.0",
+    "graphql-tools": "^6.0.0",
     "graphql-yoga": "^1.18.3",
     "merge-graphql-schemas": "^1.7.8",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "0.2.24",
-    "uuid": "^8.0.0"
+    "typeorm": "0.2.25",
+    "uuid": "^8.1.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
+    "start": "NODE_ENV=development ts-node --files src/index.ts",
+    "dev": "NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "test": "NODE_ENV=test jest",
     "gen-schema-types": "ts-node --files src/scripts/createTypes.ts"
   },

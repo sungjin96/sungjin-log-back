@@ -2,7 +2,7 @@
   {
     "name": "development",
     "type": "postgres",
-    "host": "3.34.91.157",
+    "host": "13.124.236.121",
     "port": 5432,
     "username": "postgres",
     "password": "wkdtjdwls1!",
